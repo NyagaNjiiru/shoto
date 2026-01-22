@@ -15,9 +15,9 @@ a.out
 vgcore.*
 
 # Data
-shoto.db
-shoto.db-*
 *.log
+.shoto_active
+shoto_*.log
 
 # Editor
 *.swp

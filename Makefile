@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11 -I./include
-LDFLAGS = -lsqlite3
+LDFLAGS = 
 SRC = src/main.c
 TARGET = shoto
 
