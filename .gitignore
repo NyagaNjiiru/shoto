@@ -1,0 +1,26 @@
+**`.gitignore`** update for C:
+# Build artifacts
+/build
+*.o
+*.out
+*.exe
+shoto
+a.out
+
+# Debug
+*.dSYM/
+*.su
+*.idb
+*.pdb
+vgcore.*
+
+# Data
+shoto.db
+shoto.db-*
+*.log
+
+# Editor
+*.swp
+*.swo
+*~
+.DS_Store
