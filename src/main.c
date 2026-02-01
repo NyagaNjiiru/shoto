@@ -62,4 +62,32 @@ int main(int argc, char *argv[]) {
         printf("Session complete: %s\n", intent);
         printf("Duration: %ld minutes\n", minutes);
     }
+
+    // Shoto logs
+    if (strcmp(argv[1], "log") == 0) {
+        FILE *log = fopen("shoto_sessions.log", "r");
+        if (log == NULL) {
+            printf("No sessions recorded yet\n");
+            return 0;
+        }
+
+        long timestamp, duration;
+        char intent[256];
+
+        while (fscanf(log, "%ld|%255[^|]|%ld\n", &timestamp, intent, &duration) == 3) {
+            long minutes = duration / 60;
+            long hours = minutes / 60;
+            long remaining_minutes = minutes % 60;
+
+            if (hours > 0) {
+                printf(" %s - %ldh %ldm\n", intent, hours, remaining_minutes);
+            } else {
+                printf(" %s - %ldm\n", intent, minutes);
+            }
+        }
+
+        fclose(log);
+    }
+
+    return 0;
 }
