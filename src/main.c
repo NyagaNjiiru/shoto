@@ -89,5 +89,26 @@ int main(int argc, char *argv[]) {
         fclose(log);
     }
 
+    // Shoto status
+    if (strcmp(argv[1], "status") == 0) {
+        FILE *file = fopen(".shoto_active", "r");
+        if (file == NULL) {
+            printf("No active session\n");
+            return 0;
+        }
+
+        long start_time;
+        char intent[256];
+        fscanf(file, "%ld|%255[^\n]", &start_time, intent);
+        fclose(file);
+
+        time_t now = time(NULL);
+        long elapsed = now - start_time;
+        long minutes = elapsed / 60;
+
+        printf("Currently focusing on: %s\n", intent);
+        printf("Time elapsed: %ld minutes\n", minutes);
+    }
+
     return 0;
 }
