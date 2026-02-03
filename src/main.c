@@ -110,5 +110,14 @@ int main(int argc, char *argv[]) {
         printf("Time elapsed: %ld minutes\n", minutes);
     }
 
+    // Shoto cancel
+    if (strcmp(argv[1], "cancel") == 0) {
+        if (remove(".shoto_active") == 0) {
+            printf("Session cancelled\n");
+        } else {
+            printf("No active session to cancel\n");
+        }
+    }
+
     return 0;
 }
