@@ -75,14 +75,19 @@ int main(int argc, char *argv[]) {
         char intent[256];
 
         while (fscanf(log, "%ld|%255[^|]|%ld\n", &timestamp, intent, &duration) == 3) {
+            // Convert timestamp to readable date
+            struct tm *timeinfo = localtime(&timestamp);
+            char date_str[64];
+            strftime(date_str, sizeof(date_str), "%Y-%m-%d %H:%M", timeinfo);
+
             long minutes = duration / 60;
             long hours = minutes / 60;
             long remaining_minutes = minutes % 60;
 
             if (hours > 0) {
-                printf(" %s - %ldh %ldm\n", intent, hours, remaining_minutes);
+                printf(" [%s] %s - %ldh %ldm\n", date_str, intent, hours, remaining_minutes);
             } else {
-                printf(" %s - %ldm\n", intent, minutes);
+                printf(" [%s] %s - %ldm\n", date_str, intent, minutes);
             }
         }
 
